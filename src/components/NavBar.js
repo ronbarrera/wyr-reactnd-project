@@ -46,8 +46,8 @@ class NavBar extends Component {
               </MDBNavItem>
               <MDBNavItem>
                 <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <MDBIcon icon="user" />
+                  <MDBDropdownToggle nav caret className="m-auto p-auto">
+                  <img src={this.props.user.avatarURL} className="rounded-circle z-depth-2 m-auto" alt="avatar image" height="25"/>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
                     <MDBDropdownItem onClick={this.handleSignOut}>Sign Out</MDBDropdownItem>

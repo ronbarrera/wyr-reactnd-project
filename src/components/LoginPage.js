@@ -24,9 +24,9 @@ class SignInView extends Component {
     const { userSelected } = this.state
     const userOptions = this.props.users
     return (
-        <MDBView id='loginpageview'>
+        <MDBView id='main-container'>
           <MDBMask overlay='indigo-strong' />
-          <MDBContainer
+          <MDBContainer id="loginpageview"
             style={{ height: '100%', width: '100%', paddingTop: '8rem', paddingBottom: '5rem' }}
             className='d-flex justify-content-center align-items-center' >
             <MDBCard className='dark-grey-text center'>

@@ -9,6 +9,7 @@ import LeaderboardPage from './LeaderboardPage'
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import LoginPage from './LoginPage'
+import QuestionDetailsPage from './QuestionDetailsPage'
 
 class App extends Component {
 
@@ -17,8 +18,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('this is App.js')
-    console.log(this.props.authedUser)
     return (
       <Router>
           <NavBar />
@@ -26,6 +25,7 @@ class App extends Component {
             <PrivateRoute component={HomePage} path="/" exact />
             <PrivateRoute component={NewQuestionPage} path="/add" exact />
             <PrivateRoute component={LeaderboardPage} path="/leaderboard" exact />
+            <PrivateRoute component={QuestionDetailsPage} path="/questions/:id" exact />
       </Router>
     )
   }

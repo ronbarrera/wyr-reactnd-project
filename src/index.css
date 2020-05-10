@@ -6,19 +6,35 @@
   text-align: center;
 }
 
-/*    NavBar   */
-.current {
-  background-color: rgba(255, 255, 255, 0.2);
+.md-progress {
+  background-color: #999999;
+}
+.md-progress .progress-bar {
+  background-color: #7885CC;
 }
 
-/*    LoginPage   */
-#loginpageview {
+.question-result-bg {
+  padding: 1rem;
+  margin: auto;
+  border-radius: 1rem;
+  background-color: #f2f2f2;
+  border: 1px solid;
+  border-color: #999999;
+}
+
+#main-container {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   min-height: 100vh;
 }
 
+/*    NavBar   */
+.current {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*    LoginPage   */
 #loginpageview h3 {
   font-family: 'Marker Felt';
   padding-left: 3rem;
@@ -34,22 +50,11 @@
   padding-bottom: 2rem;
   color: #000000}
 
-#loginpageview .form-check {
-  margin-bottom: 0 !important;
-}
-
 #loginpageview i {
   color: #9e9e9e !important;
 }
 
 /*    HomePage   */
-#homepageview {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  min-height: 100vh;
-}
-
 .classic-tabs ul{
   background-color: #000000;
 }

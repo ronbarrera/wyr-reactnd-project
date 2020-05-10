@@ -1,6 +1,6 @@
-import { getInitialData } from '../utils/api'
-import { receiveUsers } from '../actions/users'
-import { receiveQuestions } from '../actions/questions'
+import { getInitialData, saveQuestionAnswer} from '../utils/api'
+import { receiveUsers, addAnswerToUser } from '../actions/users'
+import { receiveQuestions, addUserToAnswer } from '../actions/questions'
 import { setAuthedUser } from '../actions/authedUser'
 
 // Set AUTHED_ID for testing
@@ -15,4 +15,17 @@ export function handleInitialData () {
 					dispatch(setAuthedUser(AUTHED_ID))
 				})
   }
+}
+
+export function handleSubmitAnswer (info) {
+	return (dispatch) => {
+		dispatch(addUserToAnswer(info))
+		dispatch(addAnswerToUser(info))
+
+		return saveQuestionAnswer(info)
+			.catch((e) => {
+				console.warn('Error in handleSubmitAnswer: ', e)
+				alert('There was an error submitting the answer. Try again.')
+			})
+	}
 }

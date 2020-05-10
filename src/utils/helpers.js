@@ -1,19 +1,15 @@
-export function formatQuestion (question, authedUser) {
-  const { id, likes, replies, text, timestamp } = tweet
-  const { name, avatarURL } = author
-
+function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
-    name,
-    id,
-    timestamp,
-    text,
-    avatar: avatarURL,
-    likes: likes.length,
-    replies: replies.length,
-    hasLiked: likes.includes(authedUser),
-    parent: !parentTweet ? null : {
-      author: parentTweet.author,
-      id: parentTweet.id,
+    id: generateUID(),
+    timestamp: Date.now(),
+    author,
+    optionOne: {
+      votes: [],
+      text: optionOneText,
+    },
+    optionTwo: {
+      votes: [],
+      text: optionTwoText,
     }
   }
 }

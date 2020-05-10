@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
 import { MDBCard, MDBCardBody, MDBCardText, MDBCardHeader, MDBBtn, MDBRow, MDBCol, MDBAvatar } from "mdbreact";
 
 class Question extends Component {
   render() {
-
     const { question } = this.props
 
     if (question === null) {
@@ -12,9 +12,9 @@ class Question extends Component {
     }
 
     const {
-      name, avatarUrl, option
+      id, name, avatarUrl, option
     } = question
-
+    
     return(
       <MDBCard>
       <MDBCardHeader color="black">{name} asks:</MDBCardHeader>
@@ -31,8 +31,10 @@ class Question extends Component {
           </MDBCol>
           <MDBCol md="8" className="center">
             <MDBCardText><strong  style={{color: 'black', fontFamily: 'Marker Felt', fontSize: '1.25rem'}}>Would you rather</strong></MDBCardText>
-            <MDBCardText>...{option}...</MDBCardText>
-            <MDBBtn className="w-100" outline color="secondary">View Poll</MDBBtn>
+            <MDBCardText style={{color: 'black'}}>...{option}...</MDBCardText>
+            <Link to={`/questions/${id}`}>
+              <MDBBtn className="w-75" outline color="secondary">View Poll</MDBBtn>
+            </Link>
           </MDBCol>
         </MDBRow>
       </MDBCardBody>
@@ -51,12 +53,13 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   return {
     authedUser, 
     question: question
-    ? { name, avatarUrl, option }
+    ? { id, name, avatarUrl, option }
     : null
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))
+
 
 
 

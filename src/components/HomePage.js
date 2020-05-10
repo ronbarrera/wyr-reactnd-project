@@ -20,15 +20,12 @@ render() {
   const questions = this.props.questions
   const userAnswers = Object.keys(user.answers)
 
-  const unanswered = questions
-                      .filter((question) => !userAnswers.includes(question.id))
-                      .sort((a, b) => b.timestamp - a.timestamp);
-  const answered = questions
-                      .filter((question) => userAnswers.includes(question.id))
-                      .sort((a, b) => b.timestamp - a.timestamp);
+  const unanswered = questions.filter((question) => !userAnswers.includes(question.id)).sort((a, b) => b.timestamp - a.timestamp);
+  const answered = questions.filter((question) => userAnswers.includes(question.id)).sort((a, b) => b.timestamp - a.timestamp);
+  
   return (
-     <MDBView id='homepageview'>
-      <MDBMask overlay='indigo-strong' />
+     <MDBView id='main-container'>
+      <MDBMask overlay='indigo-strong'/>
       <MDBContainer style={{ paddingTop: '5rem', paddingBottom: '3rem' }}>
         <div className="classic-tabs">
           <MDBNav classicTabs className="nav-justified">
@@ -51,7 +48,7 @@ render() {
             <MDBTabPane tabId="1" className='w-responsive mx-auto'>
 
              <ul id="questions-list">
-              {answered.map((question) => (
+              {unanswered.map((question) => (
                 <li key={question.id}>
                   <Question id={question.id}/>
                 </li>
@@ -61,7 +58,7 @@ render() {
 
             <MDBTabPane tabId="2" className='w-responsive mx-auto'>
             <ul id="questions-list">
-              {unanswered.map((question) => (
+              {answered.map((question) => (
                 <li key={question.id}>
                   <Question id={question.id}/>
                 </li>
