@@ -2,8 +2,43 @@
   font-family: 'Marker Felt';
   src: local('Marker Felt'), url(./fonts/MarkerFelt.ttf) format('truetype');
 }
+
+.trophy-icon {
+  transform: rotate(-15deg);
+  position: absolute;
+  top: -10px;
+  left: -25px;
+  font-size: 2.9rem;
+}
 .center {
   text-align: center;
+}
+
+.card {
+  border-radius: 10px;
+} 
+.card .card-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+} 
+.right{
+  float:right;
+}
+
+.left{
+  float:left;
+}
+
+.left-right-border {
+  border-left: 1px solid #DADADA;
+  border-right: 1px solid #DADADA;
+}
+
+@media(max-width:767px){
+  .left-right-border {
+    width: 100%;
+    border: hidden;
+  }
 }
 
 .md-progress {

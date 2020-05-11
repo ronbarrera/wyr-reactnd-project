@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { MDBView, MDBMask, MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, } from "mdbreact"
+import { MDBView, MDBMask } from "mdbreact"
 import QuestionForm from './QuestionForm'
 import QuestionResults from './QuestionResults'
 import { handleSubmitAnswer } from '../actions/shared'

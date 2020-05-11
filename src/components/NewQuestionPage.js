@@ -41,9 +41,9 @@ class NewQuestionPage extends Component {
       <MDBView id='main-container'>
         <MDBMask overlay='indigo-strong' />
         <MDBContainer
-          style={{ height: '100%', width: '100%', paddingTop: '8rem', paddingBottom: '5rem' }}
+          style={{ height: '100%', width: '100%', paddingTop: '6rem', paddingBottom: '5rem' }}
           className='d-flex justify-content-center align-items-center m-auto' >
-        <MDBCard style={{width: '60%'}}>
+        <MDBCard className="w-responsive mx-auto">
           <MDBCardHeader className="center" color="black"><strong style={{fontSize: "1.5rem"}}>Create New Question</strong></MDBCardHeader>
           <MDBCardBody>
           <MDBCardText><strong style={{color: 'black'}}>Complete the question: </strong></MDBCardText>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
@@ -20,15 +20,21 @@ class App extends Component {
   render() {
     return (
       <Router>
-          <NavBar />
-            <PublicRoute restricted={true} component={LoginPage} path="/login" exact /> 
-            <PrivateRoute component={HomePage} path="/" exact />
-            <PrivateRoute component={NewQuestionPage} path="/add" exact />
-            <PrivateRoute component={LeaderboardPage} path="/leaderboard" exact />
-            <PrivateRoute component={QuestionDetailsPage} path="/questions/:id" exact />
+        <NavBar />
+        <PublicRoute restricted={true} component={LoginPage} path="/login" exact /> 
+        <PrivateRoute component={HomePage} path="/" exact />
+        <PrivateRoute component={NewQuestionPage} path="/add" exact />
+        <PrivateRoute component={LeaderboardPage} path="/leaderboard" exact />
+        <PrivateRoute component={QuestionDetailsPage} path="/questions/:id" exact />
       </Router>
     )
   }
 }
 
-export default connect()(App)
+function mapStateToProps ({ authedUser}) {
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App)

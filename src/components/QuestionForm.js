@@ -20,7 +20,7 @@ class QuestionForm extends Component{
       <MDBContainer
           style={{ height: '100%', width: '100%', paddingTop: '8rem', paddingBottom: '5rem' }}
           className='d-flex justify-content-center align-items-center m-auto' >
-        <MDBCard style={{width: '60%'}}>
+        <MDBCard className="w-responsive mx-auto">
           <MDBCardHeader color="black">{data.user.name} asks:</MDBCardHeader>
           <MDBCardBody>
             <MDBRow>

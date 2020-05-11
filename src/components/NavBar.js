@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon  } from 'mdbreact'
+import LoadingBar from 'react-redux-loading-bar'
 
 class NavBar extends Component {
   state = {
@@ -58,6 +59,7 @@ class NavBar extends Component {
             )}
           </MDBCollapse>
         </MDBContainer>
+        <LoadingBar style={{ position: "absolute", bottom: "0", left: "0"}}/>
       </MDBNavbar>
       );
     }

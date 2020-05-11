@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { MDBCard, MDBCardBody, MDBCardText, MDBCardHeader, MDBBtn, MDBRow, MDBCol, MDBAvatar } from "mdbreact";
 
-class Question extends Component {
+class QuestionCard extends Component {
   render() {
     const { question } = this.props
 
@@ -12,11 +12,11 @@ class Question extends Component {
     }
 
     const {
-      id, name, avatarUrl, option
+      id, name, avatarURL, option
     } = question
     
     return(
-      <MDBCard>
+      <MDBCard className="w-responsive mx-auto">
       <MDBCardHeader color="black">{name} asks:</MDBCardHeader>
       <MDBCardBody>
         <MDBRow>
@@ -24,7 +24,7 @@ class Question extends Component {
               <MDBAvatar
                 style={{width: '5rem', heigth: '5rem'}}
                 tag="img"
-                src={avatarUrl}
+                src={avatarURL}
                 className="rounded-circle m-auto"
                 alt="user avatar"
               />
@@ -48,17 +48,17 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   const user = users[question.author]
 
   const name = user.name
-  const avatarUrl = user.avatarURL
+  const avatarURL = user.avatarURL
   const option = question.optionOne.text
   return {
     authedUser, 
     question: question
-    ? { id, name, avatarUrl, option }
+    ? { id, name, avatarURL, option }
     : null
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Question))
+export default withRouter(connect(mapStateToProps)(QuestionCard))
 
 
 

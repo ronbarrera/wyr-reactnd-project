@@ -37,7 +37,6 @@ let users = {
     name: 'Ronald Barrera',
     avatarURL: "https://ronaldbarrera.com/static/media/rbpic.6ecbd2e2.jpg",
     answers: {
-      "xj352vofupe1dqz9emx13r": 'optionOne'
     },
     questions: [],
   }

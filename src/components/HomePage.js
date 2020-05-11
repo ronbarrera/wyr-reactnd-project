@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
-import { MDBView, MDBMask, MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, } from "mdbreact"
-import Question from './Question'
+import { Link } from 'react-router-dom'
+import { MDBView, MDBMask, MDBContainer, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink, MDBCardText, MDBCard, MDBBtn } from "mdbreact"
+import QuestionCard from './QuestionCard'
 
 class HomePage extends Component {
 state = {
@@ -16,13 +17,19 @@ toggleTab = tab => () => {
 }
 
 render() {
-  const  user = this.props.user
-  const questions = this.props.questions
-  const userAnswers = Object.keys(user.answers)
+  var questions = {}
+  var userAnswers = []
+  var unanswered = []
+  var answered = []
 
-  const unanswered = questions.filter((question) => !userAnswers.includes(question.id)).sort((a, b) => b.timestamp - a.timestamp);
-  const answered = questions.filter((question) => userAnswers.includes(question.id)).sort((a, b) => b.timestamp - a.timestamp);
-  
+  const user = this.props.user
+  if(user !== null) {
+    questions = this.props.questions
+    userAnswers = Object.keys(user.answers)
+    unanswered = questions.filter((question) => !userAnswers.includes(question.id)).sort((a, b) => b.timestamp - a.timestamp);
+    answered = questions.filter((question) => userAnswers.includes(question.id)).sort((a, b) => b.timestamp - a.timestamp);
+  }
+
   return (
      <MDBView id='main-container'>
       <MDBMask overlay='indigo-strong'/>
@@ -44,23 +51,34 @@ render() {
           <MDBTabContent 
             className="card gray-bg"
             activeItem={this.state.activeTab} >
-
             <MDBTabPane tabId="1" className='w-responsive mx-auto'>
-
+            {unanswered.length === 0 && (<MDBCard className="center m-auto p-4" style={{width: "fit-content"}}>
+              <MDBCardText className="p-4">
+                <strong>You have answered all question</strong>
+              </MDBCardText>
+              <Link to='/add'>
+                <MDBBtn outline color="secondary">Create Question</MDBBtn>
+							</Link>
+            </MDBCard>)}
              <ul id="questions-list">
               {unanswered.map((question) => (
                 <li key={question.id}>
-                  <Question id={question.id}/>
+                  <QuestionCard id={question.id}/>
                 </li>
               ))}
             </ul>
             </MDBTabPane>
-
             <MDBTabPane tabId="2" className='w-responsive mx-auto'>
+            {answered.length === 0 && (<MDBCard className="center m-auto p-4" style={{width: "fit-content"}}>
+              <MDBCardText className="p-4">
+                <strong>You have not submitted an answer</strong>
+              </MDBCardText>
+                <MDBBtn outline color="secondary" onClick={this.toggleTab("1")}>Answer a Question</MDBBtn>
+            </MDBCard>)}
             <ul id="questions-list">
               {answered.map((question) => (
                 <li key={question.id}>
-                  <Question id={question.id}/>
+                  <QuestionCard id={question.id}/>
                 </li>
               ))}
             </ul>
@@ -77,7 +95,7 @@ function mapStateToProps ({ authedUser, questions, users }) {
   return {
     authedUser,
     user: !users[authedUser]
-      ? []
+      ? null
       : users[authedUser],
     questions: Object.values(questions)
   }
