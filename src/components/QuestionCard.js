@@ -1,19 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { MDBCard, MDBCardBody, MDBCardText, MDBCardHeader, MDBBtn, MDBRow, MDBCol, MDBAvatar } from "mdbreact";
 
 class QuestionCard extends Component {
   render() {
     const { question } = this.props
-
-    if (question === null) {
-      return <p>This Question doesn't exists</p>
-    }
-
-    const {
-      id, name, avatarURL, option
-    } = question
+    const { id, name, avatarURL, option } = question
     
     return(
       <MDBCard className="w-responsive mx-auto">
@@ -58,7 +51,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(QuestionCard))
+export default connect(mapStateToProps)(QuestionCard)
 
 
 

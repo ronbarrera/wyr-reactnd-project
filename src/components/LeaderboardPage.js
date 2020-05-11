@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import UserScoreCard from './UserScoreCard'
-import { MDBView, MDBMask, MDBContainer, MDBCard, MDBCardBody, MDBCardText, MDBCardHeader, MDBBtn, MDBInput } from "mdbreact";
+import { MDBView, MDBMask, MDBContainer, MDBCard, MDBCardHeader } from "mdbreact";
 
 class LeaderboardPage extends Component {
   render() {

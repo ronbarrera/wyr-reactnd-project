@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon  } from 'mdbreact'
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem  } from 'mdbreact'
 import LoadingBar from 'react-redux-loading-bar'
+import { withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
   state = {
@@ -13,9 +14,10 @@ class NavBar extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
-  handleSignOut = (e) => {
+  handleLogOut = (e) => {
     e.preventDefault()
-    this.props.dispatch(setAuthedUser(null))  
+    this.props.dispatch(setAuthedUser(null)) 
+    this.props.history.push(`/`)
   }
   
   render() {
@@ -48,10 +50,10 @@ class NavBar extends Component {
               <MDBNavItem>
                 <MDBDropdown>
                   <MDBDropdownToggle nav caret className="m-auto p-auto">
-                  <img src={this.props.user.avatarURL} className="rounded-circle z-depth-2 m-auto" alt="avatar image" height="25"/>
+                  <img src={this.props.user.avatarURL} className="rounded-circle z-depth-2 m-auto" alt="avatar" height="25"/>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu>
-                    <MDBDropdownItem onClick={this.handleSignOut}>Sign Out</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.handleLogOut}>Log Out</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>
@@ -74,4 +76,4 @@ class NavBar extends Component {
     }
   }
   
-export default connect(mapStateToProps)(NavBar)
+export default withRouter(connect(mapStateToProps)(NavBar))

@@ -1,15 +1,15 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { handleInitialData } from '../actions/shared'
 import NavBar from './NavBar'
 import HomePage from './HomePage'
 import NewQuestionPage from './NewQuestionPage'
 import LeaderboardPage from './LeaderboardPage'
 import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
 import LoginPage from './LoginPage'
 import QuestionDetailsPage from './QuestionDetailsPage'
+import NotFound404 from './NotFound404'
 
 class App extends Component {
 
@@ -21,11 +21,14 @@ class App extends Component {
     return (
       <Router>
         <NavBar />
-        <PublicRoute restricted={true} component={LoginPage} path="/login" exact /> 
-        <PrivateRoute component={HomePage} path="/" exact />
-        <PrivateRoute component={NewQuestionPage} path="/add" exact />
-        <PrivateRoute component={LeaderboardPage} path="/leaderboard" exact />
-        <PrivateRoute component={QuestionDetailsPage} path="/questions/:id" exact />
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <PrivateRoute component={HomePage} path="/" exact />
+          <PrivateRoute component={NewQuestionPage} path="/add" />
+          <PrivateRoute component={LeaderboardPage} path="/leaderboard" />
+          <PrivateRoute component={QuestionDetailsPage} path="/questions/:id" />
+          <PrivateRoute component={NotFound404} path='*' /> 
+        </Switch>
       </Router>
     )
   }
@@ -33,6 +36,7 @@ class App extends Component {
 
 function mapStateToProps ({ authedUser}) {
   return {
+    authedUser, 
     loading: authedUser === null
   }
 }

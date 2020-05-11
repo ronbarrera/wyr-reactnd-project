@@ -4,6 +4,7 @@ import { MDBView, MDBMask } from "mdbreact"
 import QuestionForm from './QuestionForm'
 import QuestionResults from './QuestionResults'
 import { handleSubmitAnswer } from '../actions/shared'
+import NotFound404 from './NotFound404'
 
 
 class QuestionDetailsPage extends Component {
@@ -18,6 +19,10 @@ class QuestionDetailsPage extends Component {
   }
   
   render() {
+    const { question } = this.props
+    if (question === null) {
+      return (<NotFound404 />)
+    }
     const isAnswered = this.props.isAnswered
   
     return (
@@ -37,6 +42,7 @@ class QuestionDetailsPage extends Component {
 function mapStateToProps({authedUser, questions, users}, props) {
   const { id } = props.match.params
   const question = questions[id]
+  console.log(question)
   const userAnswers = Object.keys(users[authedUser].answers)
   
   return { 
@@ -44,9 +50,10 @@ function mapStateToProps({authedUser, questions, users}, props) {
     qid : id,
     isAnswered : userAnswers.includes(id),
     option: users[authedUser].answers[id],
-    question: question,
-    user: users[question.author]
+    question: !question ? null : question,
+    user: !question ? null : users[question.author]
   }
 }
 
 export default connect(mapStateToProps)(QuestionDetailsPage)
+

@@ -1,6 +1,6 @@
 import { saveQuestion } from '../utils/api'
 import { addQuestionToUser } from '../actions/users'
-import { showLoading, hideLoading } from 'react-redux-loading'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
