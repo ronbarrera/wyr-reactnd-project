@@ -7,10 +7,3 @@ export function setAuthedUser (id) {
 		id, 
 	}
 }
-
-// TODO 
-// export function signOutUser () {
-// 	return {
-// 		type: SIGN_OUT_USER,
-// 	}
-// }
